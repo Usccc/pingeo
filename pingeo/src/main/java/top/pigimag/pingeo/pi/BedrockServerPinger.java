@@ -187,7 +187,7 @@ public class BedrockServerPinger {
         };
 
         try (DatagramSocket socket = new DatagramSocket()) {
-            socket.setSoTimeout(300000);
+            socket.setSoTimeout(30000);
             long start = System.nanoTime();
 
             ByteBuffer request = ByteBuffer.allocate(1 + Long.BYTES + magic.length + Integer.BYTES)
