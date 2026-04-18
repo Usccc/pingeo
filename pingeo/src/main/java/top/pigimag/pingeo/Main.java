@@ -6,6 +6,7 @@ import top.pigimag.pingeo.pi.BedrockServerPinger;
 import top.pigimag.pingeo.pi.JavaMinecraftServerPinger;
 import top.pigimag.pingeo.util.AResponseFormatter;
 import java.util.ResourceBundle;
+import java.net.SocketTimeoutException;
 import java.util.Locale;
 
 public class Main {
@@ -90,7 +91,12 @@ public class Main {
             JavaMinecraftServerPinger.PingResponse response = pinger.ping();
             AResponseFormatter formatter = new AResponseFormatter(response);
             System.out.println(messages.getString("jeResponse") + formatter.toString());
-        } catch (Exception e) {
+        } 
+        catch (SocketTimeoutException e){
+            System.err.println(messages.getString("socketTimeOut"));
+            System.exit(-1);
+        }
+        catch (Exception e) {
             System.err.println(messages.getString("jeFailed") + e.getMessage());
         }
     }
@@ -101,6 +107,9 @@ public class Main {
             BedrockServerPinger.PingResponse response = pinger.ping();
             AResponseFormatter formatter = new AResponseFormatter(response);
             System.out.println(messages.getString("beResponse") + formatter.toString());
+        } catch (SocketTimeoutException e){
+            System.err.println(messages.getString("socketTimeOut"));
+            System.exit(-1);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(messages.getString("beFailed") + e.getMessage());
