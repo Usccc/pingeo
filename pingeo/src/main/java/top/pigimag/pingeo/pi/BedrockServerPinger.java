@@ -38,33 +38,33 @@ public class BedrockServerPinger {
      */
     public static final class PingResponse implements Serializable {
         /** Server hostname */
-        public final String host;
+        private final String host;
         /** Server port */
-        public final int port;
+        private final int port;
         /** Ping latency in milliseconds */
-        public final long latencyMillis;
+        private final long latencyMillis;
         /** Protocol version number */
-        public final int protocolVersion;
+        private final int protocolVersion;
         /** Server version name */
-        public final String versionName;
+        private final String versionName;
         /** Main MOTD line */
-        public final String motd;
+        private final String motd;
         /** Secondary MOTD line */
-        public final String motd2;
+        private final String motd2;
         /** Current number of online players */
-        public final int onlinePlayers;
+        private final int onlinePlayers;
         /** Maximum number of players */
-        public final int maxPlayers;
+        private final int maxPlayers;
         /** Ping ID from server response */
-        public final long pingId;
+        private final long pingId;
         /** Server ID */
-        public final int serverId;
+        private final int serverId;
         /** Server unique identifier */
-        public final String serverUniqueId;
+        private final String serverUniqueId;
         /** List of online player names (may be empty for Bedrock basic pong) */
-        public final List<String> playerList;
+        private final List<String> playerList;
         /** Raw server response string */
-        public final String rawResponse;
+        private final String rawResponse;
 
         public PingResponse(
                 String host,
@@ -112,6 +112,62 @@ public class BedrockServerPinger {
                     motd2.isEmpty() ? "" : " / " + motd2,
                     serverId,
                     serverUniqueId);
+        }
+
+        public String getHost() {
+            return host;
+        }
+
+        public int getPort() {
+            return port;
+        }
+
+        public long getLatencyMillis() {
+            return latencyMillis;
+        }
+
+        public int getProtocolVersion() {
+            return protocolVersion;
+        }
+
+        public String getVersionName() {
+            return versionName;
+        }
+
+        public String getMotd() {
+            return motd;
+        }
+
+        public String getMotd2() {
+            return motd2;
+        }
+
+        public int getOnlinePlayers() {
+            return onlinePlayers;
+        }
+
+        public int getMaxPlayers() {
+            return maxPlayers;
+        }
+
+        public long getPingId() {
+            return pingId;
+        }
+
+        public int getServerId() {
+            return serverId;
+        }
+
+        public String getServerUniqueId() {
+            return serverUniqueId;
+        }
+
+        public List<String> getPlayerList() {
+            return playerList;
+        }
+
+        public String getRawResponse() {
+            return rawResponse;
         }
     }
 

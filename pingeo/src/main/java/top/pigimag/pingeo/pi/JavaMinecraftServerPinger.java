@@ -38,25 +38,25 @@ public class JavaMinecraftServerPinger {
      */
     public static final class PingResponse {
         /** Server hostname */
-        public final String host;
+        private final String host;
         /** Server port */
-        public final int port;
+        private final int port;
         /** Ping latency in milliseconds */
-        public final long latencyMillis;
+        private final long latencyMillis;
         /** Server version name */
-        public final String versionName;
+        private final String versionName;
         /** Protocol version number */
-        public final int protocolVersion;
+        private final int protocolVersion;
         /** Server description/MOTD */
-        public final String description;
+        private final String description;
         /** Current number of online players */
-        public final int onlinePlayers;
+        private final int onlinePlayers;
         /** Maximum number of players */
-        public final int maxPlayers;
+        private final int maxPlayers;
         /** List of online player names (sample from server) */
-        public final List<String> playerList;
+        private final List<String> playerList;
         /** Raw JSON response from server */
-        public final String rawJson;
+        private final String rawJson;
 
         public PingResponse(
                 String host,
@@ -94,6 +94,46 @@ public class JavaMinecraftServerPinger {
                     maxPlayers,
                     description,
                     playerList);
+        }
+
+        public String getHost() {
+            return host;
+        }
+
+        public int getPort() {
+            return port;
+        }
+
+        public long getLatencyMillis() {
+            return latencyMillis;
+        }
+
+        public String getVersionName() {
+            return versionName;
+        }
+
+        public int getProtocolVersion() {
+            return protocolVersion;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public int getOnlinePlayers() {
+            return onlinePlayers;
+        }
+
+        public int getMaxPlayers() {
+            return maxPlayers;
+        }
+
+        public List<String> getPlayerList() {
+            return playerList;
+        }
+
+        public String getRawJson() {
+            return rawJson;
         }
     }
 

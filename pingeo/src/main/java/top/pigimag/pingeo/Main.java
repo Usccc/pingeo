@@ -4,6 +4,7 @@ import java.util.Optional;
 import top.pigimag.pingeo.opt.OptionsHandler;
 import top.pigimag.pingeo.pi.BedrockServerPinger;
 import top.pigimag.pingeo.pi.JavaMinecraftServerPinger;
+import top.pigimag.pingeo.util.AResponseFormatter;
 import java.util.ResourceBundle;
 import java.util.Locale;
 
@@ -37,7 +38,7 @@ public class Main {
             patch = arg2.isEmpty()?0:arg2.get();
             pre = arg3.isEmpty()?"":arg3.get();
         }
-        private static final AppVersion VER = new AppVersion((long)0, (long)2, Optional.of((long)1),Optional.empty());
+        private static final AppVersion VER = new AppVersion((long)0, (long)2, Optional.of((long)2),Optional.empty());
         public static AppVersion getAppVersion(){
             return VER;
         }
@@ -87,7 +88,8 @@ public class Main {
         try {
             JavaMinecraftServerPinger pinger = new JavaMinecraftServerPinger(host, port);
             JavaMinecraftServerPinger.PingResponse response = pinger.ping();
-            System.out.println(messages.getString("jeResponse") + response.toString());
+            AResponseFormatter formatter = new AResponseFormatter(response);
+            System.out.println(messages.getString("jeResponse") + formatter.toString());
         } catch (Exception e) {
             System.err.println(messages.getString("jeFailed") + e.getMessage());
         }
@@ -97,11 +99,12 @@ public class Main {
         try {
             BedrockServerPinger pinger = new BedrockServerPinger(host, port);
             BedrockServerPinger.PingResponse response = pinger.ping();
-            System.out.println(messages.getString("beResponse") + response.toString());//
+            AResponseFormatter formatter = new AResponseFormatter(response);
+            System.out.println(messages.getString("beResponse") + formatter.toString());
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(messages.getString("beFailed") + e.getMessage());
-        }//an "java.nio.BufferUnderflowException" occured
+        }
     }
 
 
