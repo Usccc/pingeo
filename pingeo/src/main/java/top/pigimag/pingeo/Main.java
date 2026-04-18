@@ -6,14 +6,9 @@ import top.pigimag.pingeo.pi.BedrockServerPinger;
 import top.pigimag.pingeo.pi.JavaMinecraftServerPinger;
 import top.pigimag.pingeo.util.AResponseFormatter;
 import java.util.ResourceBundle;
-import java.net.SocketTimeoutException;
 import java.util.Locale;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import java.util.Arrays;
 
 public class Main {
-    private static final Logger logger = LogManager.getLogger(Main.class);
     private static ResourceBundle messages;
 
     static {
@@ -25,7 +20,6 @@ public class Main {
         }
     }
     public static void main(String[] args) {
-        logger.info("Application started with args: " + Arrays.toString(args));
         new OptionsHandler(args).ParseIt();
     }
     private static final class AppVersion{
@@ -91,39 +85,23 @@ public class Main {
     }
 
     public static void pingJE(String host, int port) {
-        logger.info("Pinging Java Edition server: " + host + ":" + port);
         try {
             JavaMinecraftServerPinger pinger = new JavaMinecraftServerPinger(host, port);
             JavaMinecraftServerPinger.PingResponse response = pinger.ping();
             AResponseFormatter formatter = new AResponseFormatter(response);
             System.out.println(messages.getString("jeResponse") + formatter.toString());
-            logger.info("Successfully pinged Java Edition server");
-        } 
-        catch (SocketTimeoutException e){
-            logger.error("Socket timeout while pinging Java Edition server", e);
-            System.err.println(messages.getString("socketTimeOut"));
-            System.exit(-1);
-        }
-        catch (Exception e) {
-            logger.error("Failed to ping Java Edition server", e);
+        } catch (Exception e) {
             System.err.println(messages.getString("jeFailed") + e.getMessage());
         }
     }
 
     public static void pingBE(String host, int port) {
-        logger.info("Pinging Bedrock Edition server: " + host + ":" + port);
         try {
             BedrockServerPinger pinger = new BedrockServerPinger(host, port);
             BedrockServerPinger.PingResponse response = pinger.ping();
             AResponseFormatter formatter = new AResponseFormatter(response);
             System.out.println(messages.getString("beResponse") + formatter.toString());
-            logger.info("Successfully pinged Bedrock Edition server");
-        } catch (SocketTimeoutException e){
-            logger.error("Socket timeout while pinging Bedrock Edition server", e);
-            System.err.println(messages.getString("socketTimeOut"));
-            System.exit(-1);
         } catch (Exception e) {
-            logger.error("Failed to ping Bedrock Edition server", e);
             e.printStackTrace();
             System.err.println(messages.getString("beFailed") + e.getMessage());
         }

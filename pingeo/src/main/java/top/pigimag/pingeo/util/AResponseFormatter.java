@@ -1,15 +1,12 @@
 package top.pigimag.pingeo.util;
 
 import java.util.List;
-import java.util.ResourceBundle;
 
 import top.pigimag.pingeo.pi.BedrockServerPinger;
 import top.pigimag.pingeo.pi.JavaMinecraftServerPinger;
 
 public class AResponseFormatter {
     private static enum ServerCoVersion{BEDROCK,JAVA}
-
-    private final ResourceBundle bundle = ResourceBundle.getBundle("messages");
 
     private final ServerCoVersion ver;
     private final String host;
@@ -63,21 +60,21 @@ public class AResponseFormatter {
     }
     private String toStringBedrock(){
         StringBuilder sb = new StringBuilder();
-        sb.append(bundle.getString("bedrockServerInfo")).append("\n");
-        sb.append(bundle.getString("host")).append(" ").append(host).append("\n");
-        sb.append(bundle.getString("port")).append(" ").append(port).append("\n");
-        sb.append(bundle.getString("latency")).append(" ").append(formatLatency(latencyMillis)).append(" ms\n");
-        sb.append(bundle.getString("version")).append(" ").append(versionName).append(" (").append(protocolVersion).append(")\n");
-        sb.append(bundle.getString("motd")).append(" ").append(motd).append("\n");
-        if (motd2 != null) sb.append(bundle.getString("motd2")).append(" ").append(motd2).append("\n");
-        sb.append(bundle.getString("players")).append(" ").append(onlinePlayers).append("/").append(maxPlayers).append("\n");
+        sb.append("Bedrock Server Info:\n");
+        sb.append("Host: ").append(host).append("\n");
+        sb.append("Port: ").append(port).append("\n");
+        sb.append("Latency: ").append(formatLatency(latencyMillis)).append(" ms\n");
+        sb.append("Version: ").append(versionName).append(" (").append(protocolVersion).append(")\n");
+        sb.append("MOTD: ").append(motd).append("\n");
+        if (motd2 != null) sb.append("MOTD2: ").append(motd2).append("\n");
+        sb.append("Players: ").append(onlinePlayers).append("/").append(maxPlayers).append("\n");
         if (playerList != null && !playerList.isEmpty()) {
-            sb.append(bundle.getString("playerList")).append(" ").append(String.join(", ", playerList)).append("\n");
+            sb.append("Player List: ").append(String.join(", ", playerList)).append("\n");
         }
-        sb.append(bundle.getString("pingId")).append(" ").append(pingId).append("\n");
-        sb.append(bundle.getString("serverId")).append(" ").append(serverId).append("\n");
-        sb.append(bundle.getString("serverUniqueId")).append(" ").append(serverUniqueId).append("\n");
-        sb.append(bundle.getString("rawResponse")).append(" ").append(rawResponse).append("\n");
+        sb.append("Ping ID: ").append(pingId).append("\n");
+        sb.append("Server ID: ").append(serverId).append("\n");
+        sb.append("Server Unique ID: ").append(serverUniqueId).append("\n");
+        sb.append("Raw Response: ").append(rawResponse).append("\n");
         return sb.toString();
     }
     private String formatLatency(long l){
@@ -102,17 +99,17 @@ public class AResponseFormatter {
     }
     private String toStringJava(){
         StringBuilder sb = new StringBuilder();
-        sb.append(bundle.getString("javaServerInfo")).append("\n");
-        sb.append(bundle.getString("host")).append(" ").append(host).append("\n");
-        sb.append(bundle.getString("port")).append(" ").append(port).append("\n");
-        sb.append(bundle.getString("latency")).append(" ").append(formatLatency(latencyMillis)).append(" ms\n");
-        sb.append(bundle.getString("version")).append(" ").append(versionName).append(" (").append(protocolVersion).append(")\n");
-        sb.append(bundle.getString("motd")).append(" ").append(motd).append("\n");
-        sb.append(bundle.getString("players")).append(" ").append(onlinePlayers).append("/").append(maxPlayers).append("\n");
+        sb.append("Java Minecraft Server Info:\n");
+        sb.append("Host: ").append(host).append("\n");
+        sb.append("Port: ").append(port).append("\n");
+        sb.append("Latency: ").append(formatLatency(latencyMillis)).append(" ms\n");
+        sb.append("Version: ").append(versionName).append(" (").append(protocolVersion).append(")\n");
+        sb.append("MOTD: ").append(motd).append("\n");
+        sb.append("Players: ").append(onlinePlayers).append("/").append(maxPlayers).append("\n");
         if (playerList != null && !playerList.isEmpty()) {
-           sb.append(bundle.getString("playerList")).append(" ").append(String.join(", ", playerList)).append("\n");
+           sb.append("Player List: ").append(String.join(", ", playerList)).append("\n");
         }
-        sb.append(bundle.getString("rawResponse")).append(" ").append(rawResponse).append("\n");
+        sb.append("Raw Response: ").append(rawResponse).append("\n");
         return sb.toString();
     }
     public String toString(){
