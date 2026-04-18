@@ -146,7 +146,7 @@ public class JavaMinecraftServerPinger {
     public PingResponse ping() throws IOException {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port), 3000);
-            socket.setSoTimeout(300000);
+            socket.setSoTimeout(30000);
             long start = System.nanoTime();
 
             OutputStream output = socket.getOutputStream();
