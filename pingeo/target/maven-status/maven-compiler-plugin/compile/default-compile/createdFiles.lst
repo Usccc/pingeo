@@ -1,7 +1,7 @@
 top\pigimag\pingeo\pi\BedrockServerPinger.class
-top\pigimag\pingeo\Main.class
+top\pigimag\pingeo\util\AResponseFormatter.class
 top\pigimag\pingeo\pi\JavaMinecraftServerPinger.class
-top\pigimag\pingeo\Main$AppVersion.class
+top\pigimag\pingeo\util\ColoredTextPrinter.class
+top\pigimag\pingeo\util\AResponseFormatter$ServerCoVersion.class
 top\pigimag\pingeo\pi\BedrockServerPinger$PingResponse.class
 top\pigimag\pingeo\pi\JavaMinecraftServerPinger$PingResponse.class
-top\pigimag\pingeo\opt\OptionsHandler.class
